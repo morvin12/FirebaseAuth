@@ -1,6 +1,8 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { auth } from '../../FirebaseAuth'
+import { auth } from '../firebase'
+
+
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
@@ -8,13 +10,13 @@ const LoginScreen = () => {
 
     const handleSignUp = () => {
         auth
-            .createUserWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log(user.email);
-            })
-            .catch(error => alert(error.message))
-    }
+          .createUserWithEmailAndPassword(email, password)
+          .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Registered with:', user.email);
+          })
+          .catch(error => alert(error.message))
+      }
 
   return (
       <KeyboardAvoidingView
